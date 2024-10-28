@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Page</title>
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="manifest" href="/manifest.json">
+    <!-- Importation de Hammer.js depuis un CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+</head>
+<body>
+    <main>
+        <!-- Contenu spécifique de chaque page ici -->
+        <h1>Bienvenue sur la page Femme du jour</h1>
+    </main>
+    
+    <footer>
+        <div class="footer-navigation">
+            <a href="/calendrier.html" class="footer-link" id="calendrier-link">
+                <img src="/assets/images/calendar.png" alt="Calendrier" width="100" />
+            </a>
+            <a href="/femme-du-jour.html" class="footer-link" id="femme-du-jour-link">
+                <img src="/assets/images/home.png" alt="Femme du jour" width="100" />
+            </a>
+            <a href="/femme-de-demain.html" class="footer-link" id="femme-de-demain-link">
+                <img src="/assets/images/demain.png" alt="Femme de demain" width="100" />
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Met en évidence l'icône de la page actuelle en ajoutant la classe 'active'
+        const currentPage = window.location.pathname;
+        document.querySelectorAll('.footer-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+        // Initialisation de Hammer.js pour gérer les gestes de swipe
+        const mainElement = document.querySelector('main');
+        const hammer = new Hammer(mainElement);
+
+        // Détection du swipe gauche et droit
+        hammer.on('swipeleft', () => {
+            window.location.href = "/femme-de-demain.html"; // Page suivante
+        });
+
+        hammer.on('swiperight', () => {
+            window.location.href = "/calendrier.html"; // Page précédente
+        });
+    </script>
+</body>
+</html>
